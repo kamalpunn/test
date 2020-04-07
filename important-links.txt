@@ -1,0 +1,40 @@
+ansible_hosts
+group_vars/*/vars
+roles/*/tasks/main.yml
+
+How to push docker image and tar file to Nexus(container) and OPSLAB Nexus server
+
+worked on how to push mswuiws docker image to local NEXUS docker registry
+worked on how to push artifacts ( tar file )  to NEXUS repository
+MSWUIWS build image and push to both AWS ECR and NEXUS Registry
+Build Security center jenkin job in OPSLAB jenkin master which build in the lam_slave slave server and push artifacts to NEXUS
+
+Created SSC deployment job in OPSLAB jenkins and modified it to work by putting new jenkins keys to ansible server
+
+Created a new VM for deployment testing in OPSLAB using our terraform module
+modified SSC anible deployment job to pull artifacts from NEXUS and deploy the same on DEV enviroment
+
+
+ wait_for_guest_ip_timeout:                               "" => "60"
+  wait_for_guest_net_routable:                             "" => "true"
+  wait_for_guest_net_timeout:                              "" => "5"
+
+Step by step guide to set up master and agent machines on Windows ----string
+https://wiki.jenkins.io/display/JENKINS/Step+by+step+guide+to+set+up+master+and+agent+machines+on+Windows
+https://emilwypych.com/2017/02/07/jenkins-windows-slave-agent-service/?cn-reloaded=1
+
+jenkins-windows-slave-msw 10.206.252.220 sjl1itopsesx7301.opslab.local
+
+javaws http://10.206.252.220/computer/Jenkins Slave/slave-agent.jnlp
+
+jenkins URL on jenkins master server is 10.106.52.206 was earlier ------>http://54.188.170.28/
+==================================================================================
+command to run from slave window
+    java -jar agent.jar -jnlpUrl http://10.106.52.206/computer/jenkins-windows-slave-msw/slave-agent.jnlp -secret 290d8869a68a2ae3a308d4bd0e3c201c46513860092499118a7590a1b0c711d3 -workDir "C:\Jenkins"
+
+    Run from agent command line, with the secret stored in a file:
+
+    echo 290d8869a68a2ae3a308d4bd0e3c201c46513860092499118a7590a1b0c711d3 > secret-file
+    java -jar agent.jar -jnlpUrl http://10.106.52.206/computer/jenkins-windows-slave-msw/slave-agent.jnlp -secret @secret-file -workDir "C:\Jenkins"
+
+Labels
